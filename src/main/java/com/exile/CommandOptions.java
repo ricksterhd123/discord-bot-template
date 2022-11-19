@@ -7,8 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Command {
-    public String name();
-    public String description();
-    public CommandOptions options();
+public @interface CommandOptions {
+    public CommandOption[] value();
 }
