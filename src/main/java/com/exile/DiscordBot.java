@@ -1,15 +1,15 @@
 package com.exile;
 
+import java.util.Collections;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class DiscordBot extends ListenerAdapter {
     final private static Logger logger = LoggerFactory.getLogger(DiscordBot.class);
@@ -25,18 +25,21 @@ public class DiscordBot extends ListenerAdapter {
 
     private static void start(DiscordbotConfig config) {
         logger.info("Initializing discord bot");
-        JDA jda = JDABuilder.createDefault(config.token)
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                .build();
-        jda.addEventListener(new DiscordBot());
+        JDA jda = JDABuilder.createLight(config.token, Collections.emptyList())
+            .addEventListeners(new DiscordBot())
+            .build();
+        jda.upsertCommand("ping", "Calculate ping of the bot").queue();
     }
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.isFromGuild()) {
-            String authorName = event.getAuthor().getName();
-            Message message = event.getMessage();
-            logger.info("[Discord] {} {}", authorName, message.getContentDisplay());
-        }
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event)
+    {
+        if (!event.getName().equals("ping")) return;
+
+        long time = System.currentTimeMillis();
+
+        event.reply("Pong!").setEphemeral(true)
+            .flatMap(v -> event.getHook().editOriginalFormat("Pong: %d ms", System.currentTimeMillis() - time))
+            .queue();
     }
 }
