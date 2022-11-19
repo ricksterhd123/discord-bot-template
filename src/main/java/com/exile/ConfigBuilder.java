@@ -3,7 +3,6 @@ package com.exile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;

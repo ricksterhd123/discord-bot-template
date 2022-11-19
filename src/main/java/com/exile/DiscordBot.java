@@ -3,10 +3,9 @@ package com.exile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
-
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
-
+import com.exile.commands.DiscordCommandHandlers;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -36,7 +35,7 @@ public class DiscordBot extends ListenerAdapter {
 
         if (commandHandlerMethod != null) {
             try {
-                commandHandlerMethod.invoke(CommandHandlers.class, event, logger);
+                commandHandlerMethod.invoke(DiscordCommandHandlers.class, event, logger);
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 logger.error(ExceptionUtils.getMessage(e));
             }

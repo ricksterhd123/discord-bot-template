@@ -1,9 +1,14 @@
-package com.exile;
+package com.exile.commands;
 
 import org.slf4j.Logger;
+
+import com.exile.commands.annotations.Command;
+import com.exile.commands.annotations.CommandOption;
+import com.exile.commands.annotations.CommandOptions;
+
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 
-public class CommandHandlers {
+public class DiscordCommandHandlers {
     @Command(
         name = "hello",
         description = "Say hello!",

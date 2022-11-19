@@ -1,4 +1,4 @@
-package com.exile;
+package com.exile.commands.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
