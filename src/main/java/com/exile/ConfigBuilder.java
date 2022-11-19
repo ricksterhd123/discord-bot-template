@@ -11,13 +11,13 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DiscordbotConfigBuilder {
+public class ConfigBuilder {
     final private static Configurations configs = new Configurations();
     final private static Logger logger = LoggerFactory.getLogger(DiscordBot.class);
 
     private String filePath;
 
-    DiscordbotConfigBuilder(String filePath) {
+    ConfigBuilder(String filePath) {
         this.filePath = filePath;
     }
 
@@ -26,7 +26,7 @@ public class DiscordbotConfigBuilder {
             File configFile = new File(filePath);
 
             if (configFile.createNewFile()) {
-                DiscordbotConfig defaultConfig = new DiscordbotConfig();
+                Config defaultConfig = new Config();
                 FileWriter fw = new FileWriter(configFile);
                 fw.write(defaultConfig.toString());
                 fw.flush();
@@ -40,9 +40,9 @@ public class DiscordbotConfigBuilder {
         }
     }
 
-    public DiscordbotConfig build() throws Exception {
+    public Config build() throws Exception {
         try {
-            DiscordbotConfig discordbotConfig = new DiscordbotConfig();
+            Config discordbotConfig = new Config();
 
             File configFile = getFile();
             PropertiesConfiguration config = configs.properties(configFile);

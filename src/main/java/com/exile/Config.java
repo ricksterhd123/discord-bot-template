@@ -1,6 +1,6 @@
 package com.exile;
 
-public class DiscordbotConfig {
+public class Config {
     public String token;
 
     public String toString() {
