@@ -1,0 +1,4 @@
+target/
+logs/
+*.code-workspace
+discordbot.properties
