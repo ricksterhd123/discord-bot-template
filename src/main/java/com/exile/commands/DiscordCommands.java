@@ -22,6 +22,8 @@ public class DiscordCommands {
 
     private static OptionType getOptionType(String typeName) {
         switch (typeName) {
+            case "integer":
+                return OptionType.INTEGER;
             default:
                 return OptionType.STRING;
         }

@@ -20,4 +20,18 @@ public class DiscordCommandHandlers {
         String message = event.getOption("message").getAsString();
         event.reply(String.format("%s", message)).queue();
     }
+
+    @Command(
+        name = "add",
+        description = "Add two numbers",
+        options = @CommandOptions(value ={
+            @CommandOption(name = "num1", type = "integer", description = "The first number"),
+            @CommandOption(name = "num2", type = "integer", description = "The second number")
+        })
+    )
+    public static void add(SlashCommandInteractionEvent event, Logger logger) {
+        Integer num1 = event.getOption("num1").getAsInt();
+        Integer num2 = event.getOption("num2").getAsInt();
+        event.reply(String.format("%d", num1 + num2)).queue();
+    }
 }
