@@ -39,6 +39,8 @@ public class DiscordCommands {
                 CommandOption[] options = commandHandler.options().value();
                 SlashCommandData data = Commands.slash(commandHandler.name(), commandHandler.description());
 
+                data.setGuildOnly(true);
+
                 for (CommandOption option : options) {
                     data.addOption(getOptionType(option.type()), option.name(), option.description(), true, true);
                 }
