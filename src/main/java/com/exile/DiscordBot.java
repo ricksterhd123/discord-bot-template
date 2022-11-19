@@ -19,11 +19,6 @@ public class DiscordBot extends ListenerAdapter {
         this.handlerMap = handlerMap;
     }
 
-    /**
-     * This method dispatches slash-command events.
-     * Each slash-command should have a handler method inside CommandHandlers class,
-     * we know which method handles which command using the @Command(name) annotation
-     */
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         User author = event.getInteraction().getUser();
