@@ -22,7 +22,7 @@ public class DiscordCommandHandlers {
     }
 
     @Command(
-        name = "add",
+        name = "add2",
         description = "Add two numbers",
         options = @CommandOptions(value ={
             @CommandOption(name = "num1", type = "integer", description = "The first number"),
